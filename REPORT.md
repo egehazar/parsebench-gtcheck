@@ -57,7 +57,13 @@ pages were not checked.
   same rows. The list is a lower bound.
 - Parser agreement is how a page gets flagged, not proof: many rows share a model family or an OCR front end. The
   page crop is the evidence.
-- Charts, layout, forms and the formatting subsets were not checked.
+- Formatting subsets (headings, strikeout, underline) are defined by rules, not Markdown. `gtcheck_rules.py`
+  checked that each of their 499 rule texts appears on its born-digital page or in at least 10% of the outputs:
+  all do.
+- Charts: `gtcheck_charts.py` flags key values a chart does not print. Its 14 flags were all values drawn but not
+  labelled on the chart (for example the 2014 points of a 2014-vs-2022 chart, where only 2022 is labelled), so the
+  key's values cannot be checked against printed text. Charts are out of reach of this method.
+- Layout and forms were not checked (LlamaIndex's own v2.03 review covered forms).
 
 ## Not errors (looked like errors, are not)
 - `text_ocr__santacruz`: "Revised: 11/2006 / 12/2009 / 12/2012" is real, deliberately degraded text in the page's

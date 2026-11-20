@@ -66,7 +66,7 @@ def cases(subset):
         r = json.loads(line)
         meta = json.loads(r['metadata']) if isinstance(r.get('metadata'), str) else (r.get('metadata') or {})
         rules = json.loads(r['test_rules']) if isinstance(r.get('test_rules'), str) else (r.get('test_rules') or [])
-        ref = scored_reference(r['expected_markdown'], rules) if r.get('dimension') == 'text' or subset == 'text' else r['expected_markdown']
+        ref = r['expected_markdown'] if r.get('dimension') == 'tables' else scored_reference(r['expected_markdown'], rules)
         yield r['id'], os.path.join(GT, r['document']), ref, meta
 
 
