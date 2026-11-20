@@ -45,7 +45,8 @@ pages were not checked.
    are absent from the text layer, with each page token able to match only once, and absent from 90% of parsers.
 2. **Read on the rendered page**, crop by crop.
 3. **Scored** with ParseBench's own per-page function (`next_metrics.compute_next_metrics`) on each published
-   record, before and after the correction (`impact.py`).
+   record, before and after the correction (`impact.py`). The same scoring reproduces LlamaParse (Agentic Plus)'s
+   leaderboard row: Tables 94.72 (published 94.72), Text 90.31 (published 90.22) (`reproduce.py`).
 4. **Re-checked independently** by a second reviewer (Fable 5.2, an AI model) from the raw files. That review
    caught three earlier claims of mine that were wrong as scored errors (they are the question above): I had
    compared text pages against `expected_markdown`, not the `original_md` the scorer reads. The checker now uses

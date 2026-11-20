@@ -29,8 +29,8 @@ Checks in `gtcheck.py`:
 
 ## Checking the checker
 - `reproduce.py` scores a whole leaderboard row with the same per-page function and ParseBench's dimension
-  weights. LlamaParse (Agentic Plus), Text: 90.31 here against 90.22 published, at the leaderboard's pinned
-  revision.
+  weights. LlamaParse (Agentic Plus) at the leaderboard's pinned revision: Tables 94.72 here against 94.72
+  published; Text 90.31 against 90.22.
 - A second reviewer (an AI model, Fable 5.2) re-checked every claimed error from the raw files before anything was
   reported, and caught three that were wrong as scored errors (see REPORT.md).
 
