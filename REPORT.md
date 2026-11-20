@@ -1,10 +1,10 @@
-# ParseBench 2: four answer-key errors that cap the best possible score on their page
+# ParseBench 2: answer-key errors found with the PDF text layer and the published outputs
 
 Dataset: `llamaindex/ParseBench-2` at Hugging Face main, revision `51c6bc2abf2e6c49617ce700b5a7967b552b650e`
 (newest changelog entry v2.07). Parser outputs: `llamaindex/ParseBench-2-results` main (59 published rows).
 Subsets checked: text, tables, complex_table_headers, financial_tables, insurance_filing_tables, dense_tables.
 
-## The four errors
+## Batch 1 (posted as run-llama/ParseBench#316): four errors
 
 | Page | What is wrong | Best score on the page today -> after the fix | Page mean over 59 parsers |
 |---|---|---|---|
@@ -23,6 +23,53 @@ the text page the same replacement goes into the `.md` and into `original_md` in
 key tables the scorer splits it and matches both pieces; with one it charges the other blocks as invented rows (0.567
 to 0.116). The key covers only the first block by design, so that is the key's scope rule, not this fix. On 018 the
 eight that lose have row misalignments of their own.
+
+## Batch 2: the text reference differs from what the page prints (15 pages)
+
+Found with `wdiff.py`: word-level differences between the scored reference and the PDF's text layer where at least
+90% of the published outputs side with the PDF. Every page was then read at high zoom; on all of them the drawn text
+matches the text layer. Each correction was scored like batch 1, applied to `expected_markdown` and `original_md`
+(`fixes_wording.json`, `fixes_nextpage.json`).
+
+**Text from the next page.** `text/text_simple__boldanditalic` ends mid-sentence at "is required by the Governmental
+Accounting" (then the page number). The reference completes the sentence with text that is not on the page
+("Standards Board, who considers it ... historical context."). Best score 0.90 -> 1.00; page mean +9.6 points,
+59 of 59 up.
+
+**The reference has different wording from the page.** ParseBench has no written policy on typos, but its v2.06
+fixes all restore printed wording (TXT-005 repeated words, TXT-010 added diacritics removed, TXT-013 "mid July"
+kept without "in", TXT-014 a clipped "t" kept). On these pages the reference has wording the page does not print:
+
+| Page | The page prints | The reference has | Best score today -> after | Page mean |
+|---|---|---|---|---|
+| `text_misc__crash` | APPORTIONED LICENSE PLAT OF R584245 | PLATE | 0.90 -> 1.00 | +8.8 |
+| `text_simple__aitools` | Check out own Custom GPTs | Check out our own | 0.90 -> 0.95 | +4.9 |
+| `text_multicolumns__3cools` | Group President and Chief Executive (Aliko Dangote) | ... Chief Executive Officer | 0.95 -> 1.00 | +4.5 |
+| `text_simple__checkbox` | interventions aimed and decreasing gun violence | aimed at | 1.00 -> 1.00 | +4.5 |
+| `text_simple__green` | discolouration and degradation to prevent | degradation and to prevent | 0.95 -> 1.00 | +4.3 |
+| `text_simple__paper1page` | mappings are concentrated the Low Priority Zone | concentrated in the | 1.00 -> 1.00 | +4.3 |
+| `text_multicolumns__2colrep` | low-complexity that are fast-to-value | low-complexity projects that | 0.95 -> 1.00 | +4.3 |
+| `text_dense__livingWord` | in our community as leader, advocate and protector | as a leader | 0.92 -> 0.93 | +2.9 |
+| `text_multicolumns__pap_2col` | to study RNNs through the lens of dynamical systems theory [25–32] | the phrase is missing | 0.95 -> 1.00 | +2.4 |
+| `text_multicolumns__simple2col` | capacity limits for sites | for all sites | 0.95 -> 1.00 | +1.8 |
+| `text_simple__eu` | (Gerard Laprat) | Gérard | 0.99 -> 1.00 | +0.9 |
+| `text_simple__hca` | To access providers alerts | provider alerts | 0.99 -> 1.00 | +0.9 |
+| `text_multicolumns__sbi` | Information System audits | Systems | 0.99 -> 1.00 | +0.9 |
+
+Each row: 54 to 59 of 59 parsers go up. Several look like pattern-completion from neighbouring lines (the next
+signatory prints "Officer"; the next line prints "LICENSE PLATE"). A question rather than a claim:
+`text_simple__dividend` prints "right to such Dividends Equivalents" where the reference has "Dividend"; that page
+was reviewed in v2.06 (TXT-019/020) and the wording kept, so it may be a deliberate choice (+0.9 if changed).
+
+**Who goes down.** 11 parser rows score lower after these corrections; 9 of them wrote the reference's wording
+(for example dots.ocr 1.5 and Chandra 2 write "aimed at" where the page prints "aimed and"), so the current
+reference rewards making the same edit. Two are scorer realignments: LlamaParse (Agentic Plus) on livingWord writes
+"as leader" correctly, but the reference's spare "a" had been matched to an "a" in its image alt text, and once
+removed the alt text is charged as one invented passage; jinaocr on pap_2col is the same kind of realignment. That
+alt text is charged at all seems to conflict with text-v21.md ("image alt descriptions ... are not" text).
+
+**Scale.** Together (14 pages, the dividend question excluded) about +0.11 points on the Text mean; with batch 1's
+disclaimer, about +0.12. No ranking changes.
 
 ## A question, with no score effect
 On 57 of the 508 text pages, `expected_markdown` (and the published `<name>.md`, which the dataset README calls the
@@ -66,6 +113,11 @@ pages were not checked.
 - Layout and forms were not checked (LlamaIndex's own v2.03 review covered forms).
 
 ## Not errors (looked like errors, are not)
+- Page headers and footers drawn as logos or letterheads (`text_simple__cap`, `text_simple__cmn`,
+  `text_multicolumns__tableinmiddle2cols`): the reference transcribes them; many outputs put headers in separate
+  layout fields rather than their Markdown, which the scorer adds back.
+- Margin line numbers on pleading paper (`text_simple__linenum`) and code-block language labels
+  (`text_misc__justcode`): handled by the scorer.
 - `text_ocr__santacruz`: "Revised: 11/2006 / 12/2009 / 12/2012" is real, deliberately degraded text in the page's
   corner. The key is right; parsers miss it.
 - Handwritten notes on scanned letters (`text_ocr__ref`, `text_ocr__skew`): the key transcribes them, parsers skip.

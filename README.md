@@ -3,9 +3,13 @@
 Finds likely mistakes in the answer key of [ParseBench 2](https://github.com/run-llama/ParseBench), LlamaIndex's
 benchmark for document parsers, and measures what each mistake costs the parsers, with ParseBench's own scorer.
 
-**Findings: [REPORT.md](REPORT.md).** Four answer-key errors on the newest revision (v2.07), each of which caps the
-best possible score on its page (for example, a perfect parse of one insurance page scores 0.75 today), and one
-question about 57 text pages whose published Markdown differs from what the scorer reads.
+**Findings: [REPORT.md](REPORT.md)**, on the newest revision (v2.07):
+- Batch 1 ([run-llama/ParseBench#316](https://github.com/run-llama/ParseBench/issues/316)): four errors, each of
+  which caps the best possible score on its page (a perfect parse of one insurance page scores 0.75 today).
+- Batch 2: 15 text pages where the reference differs from what the page prints: one page completes its last
+  sentence with next-page text, and 13 have wording the page does not print ("LICENSE PLATE" where the page prints
+  "PLAT", "aimed at" where it prints "aimed and"). On most of them the best possible score is below 1.00 today.
+- A question about 57 text pages whose published Markdown differs from what the scorer reads.
 
 ## How it works
 Evidence that is not anyone's opinion:
@@ -22,6 +26,8 @@ Checks in `gtcheck.py`:
   than the text layer, with parser agreement; artifact filters for footnote letters glued to numbers, numbers split
   across lines, ordinals and bare symbols.
 - `omissions`: numbers the text layer and the parsers have more often than the reference.
+- `wdiff.py`: word-level differences between the reference and the text layer where 90% of outputs side with the
+  page (after `gtcheck.py spans` flags candidate pages).
 - `phantom`: table rows whose words are not on the page (each page token can match once, so a pasted copy of real
   vocabulary still shows up).
 - Text pages are compared against the reference the text scorer reads: a rule's `original_md` when present, else

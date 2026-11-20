@@ -1,0 +1,8 @@
+[
+ {
+  "id": "text/text_simple__boldanditalic",
+  "what": "the page ends mid-sentence at \"is required by the Governmental Accounting\" (then the page number); the key completes the sentence with text from the next page",
+  "find": "Governmental Accounting Standards Board, who considers it to be an essential part of financial reporting for placing the basic financial statements in an appropriate operational, economic, or historical context.",
+  "replace": "Governmental Accounting"
+ }
+]

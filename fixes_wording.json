@@ -1,0 +1,86 @@
+[
+ {
+  "id": "text/text_misc__crash",
+  "what": "page prints \"LICENSE PLAT OF R584245\"; key corrects it to \"PLATE\"",
+  "find": "APPORTIONED LICENSE PLATE OF",
+  "replace": "APPORTIONED LICENSE PLAT OF"
+ },
+ {
+  "id": "text/text_dense__livingWord",
+  "what": "page prints \"in our community as leader, advocate and protector\"; key adds \"a\"",
+  "find": "community as a leader",
+  "replace": "community as leader"
+ },
+ {
+  "id": "text/text_multicolumns__3cools",
+  "what": "page prints \"Group President and Chief Executive\" (Aliko Dangote); key adds \"Officer\"",
+  "find": "Chief Executive Officer*\n*Dangote",
+  "replace": "Chief Executive*\n*Dangote"
+ },
+ {
+  "id": "text/text_multicolumns__sbi",
+  "what": "page prints \"Information System audits\"; key has \"Systems\"",
+  "find": "Information Systems audits",
+  "replace": "Information System audits"
+ },
+ {
+  "id": "text/text_simple__dividend",
+  "what": "page prints \"right to such Dividends Equivalents\"; key has \"Dividend\"",
+  "find": "right to such Dividend Equivalents",
+  "replace": "right to such Dividends Equivalents"
+ },
+ {
+  "id": "text/text_simple__eu",
+  "what": "page prints \"(Gerard Laprat)\"; key adds an accent",
+  "find": "Gérard Laprat",
+  "replace": "Gerard Laprat"
+ },
+ {
+  "id": "text/text_simple__green",
+  "what": "page prints \"discolouration and degradation to prevent\"; key adds \"and\"",
+  "find": "degradation and to prevent",
+  "replace": "degradation to prevent"
+ },
+ {
+  "id": "text/text_simple__hca",
+  "what": "page prints \"To access providers alerts\"; key has \"provider\"",
+  "find": "access provider alerts",
+  "replace": "access providers alerts"
+ },
+ {
+  "id": "text/text_simple__paper1page",
+  "what": "page prints \"mappings are concentrated the Low Priority\"; key adds \"in\"",
+  "find": "concentrated in the **Low",
+  "replace": "concentrated the **Low"
+ },
+ {
+  "id": "text/text_multicolumns__pap_2col",
+  "what": "page prints \"to study RNNs through the lens of dynamical systems theory [25–32]\"; key drops the phrase",
+  "find": "to study RNNs [25–32]",
+  "replace": "to study RNNs through the lens of dynamical systems theory [25–32]"
+ },
+ {
+  "id": "text/text_simple__aitools",
+  "what": "page prints \"Check out own Custom GPTs\"; key adds \"our\"",
+  "find": "Check out our own",
+  "replace": "Check out own"
+ },
+ {
+  "id": "text/text_multicolumns__simple2col",
+  "what": "page prints \"setting capacity limits for sites\"; key adds \"all\"",
+  "find": "limits for all sites",
+  "replace": "limits for sites"
+ },
+ {
+  "id": "text/text_simple__checkbox",
+  "what": "page prints \"interventions aimed and decreasing gun violence\"; key corrects to \"aimed at\"",
+  "find": "interventions aimed at decreasing gun",
+  "replace": "interventions aimed and decreasing gun"
+ },
+ {
+  "id": "text/text_multicolumns__2colrep",
+  "what": "page prints \"low-complexity that are fast-to-value\"; key adds \"projects\"",
+  "find": "low-complexity projects that",
+  "replace": "low-complexity that"
+ }
+]
