@@ -94,8 +94,14 @@ where `original_md` agrees:
   (710・1475, 042・722・3111).
 - `text_multilang__greek`: the `.md` lacks the printed italic caption above the photo.
 
-Anyone who reads the `.md` as the reference sees the wrong text. Is the `.md` meant to be kept in sync? The other 54
-pages were not checked.
+Anyone who reads the `.md` as the reference sees the wrong text. Is the `.md` meant to be kept in sync?
+
+Across all 57 (`mdsync.py`, word-level similarity of each copy to the published outputs and, on born-digital
+pages, to the PDF text layer): `original_md` is the closer copy on 32 pages by the outputs and on 13 of 25 by the
+text layer; the `.md` is closer on 4 and 2, by small and mixed margins (for example `text_multilang__hausa` is
+closer to the outputs in one copy and to the text layer in the other); the rest are within 0.2%. So the scored copy
+looks like the maintained one and the `.md` like an older export, with no clear case of a fix that reached the
+`.md` but not the scorer.
 
 ## How the errors were found and checked
 1. **Flagged by `gtcheck.py`.** A number in the scored reference that the PDF's own text layer has fewer times
