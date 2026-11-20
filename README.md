@@ -9,6 +9,8 @@ benchmark for document parsers, and measures what each mistake costs the parsers
 - Batch 2: 15 text pages where the reference differs from what the page prints: one page completes its last
   sentence with next-page text, and 13 have wording the page does not print ("LICENSE PLATE" where the page prints
   "PLAT", "aimed at" where it prints "aimed and"). On most of them the best possible score is below 1.00 today.
+- Batch 3: four table cells that differ from the page (a value copied from the row below, a wrong sign-free figure,
+  a corrected source typo, a truncated label).
 - A question about 57 text pages whose published Markdown differs from what the scorer reads.
 
 ## How it works

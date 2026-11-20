@@ -71,6 +71,18 @@ alt text is charged at all seems to conflict with text-v21.md ("image alt descri
 **Scale.** Together (14 pages, the dividend question excluded) about +0.11 points on the Text mean; with batch 1's
 disclaimer, about +0.12. No ranking changes.
 
+## Batch 3: table cells that differ from the page (4 pages)
+
+Found with `wdiff.py` on the table subsets, read on the rendered page, and re-checked independently
+(`fixes_tables_batch2.json`). Tables are scored against `expected_markdown` by `table_next`.
+
+| Page | The page prints | The key has | Best score today -> after | Page mean over 59 |
+|---|---|---|---|---|
+| `financial_tables/tu-2026-08-13_page1` | Appendix 3, EMEAA, Removals: (3,302) | (3,143), the Greater China value from the row below. The page's arithmetic confirms 3,302: 12,983 − 3,302 = 9,681, and 7,127 + 3,302 + 3,143 = 13,572 (Global) | 0.83 -> 0.90 | +6.4; 56 up, 0 down |
+| `financial_tables/annual-report-2024-3-2026-08-21_page299` | Other Respiratory: 586 (6) (1) 147 ... | (7) as the third value | 0.90 -> 1.00 | +7.1; 56 up, 0 down |
+| `financial_tables/ppt3-2026-08-14_page1` | Responsible AI policy: "Pages 12 and 124" (a typo in the source; neighbouring rows run 119/120, 121/122, 126) | "Pages 123 and 124" | 0.98 -> 1.00 | +8.2; 52 up, 3 down (the 3 wrote "123") |
+| `financial_tables/marsh-2026-08-14_page2` | Total (row label) | Tota | 0.98 -> 1.00 | +1.9; 56 up, 0 down |
+
 ## A question, with no score effect
 On 57 of the 508 text pages, `expected_markdown` (and the published `<name>.md`, which the dataset README calls the
 reference Markdown) differs from the `original_md` on the page's `unexpected_sentence_percent` rule. The text

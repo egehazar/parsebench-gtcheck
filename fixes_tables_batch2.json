@@ -1,0 +1,26 @@
+[
+ {
+  "id": "financial_tables/tu-2026-08-13_page1",
+  "what": "Appendix 3, EMEAA row, Removals: the page prints (3,302); the key has (3,143), the Greater China value from the row below",
+  "find": "<td>12,983</td>\n      <td>(3,143)</td>",
+  "replace": "<td>12,983</td>\n      <td>(3,302)</td>"
+ },
+ {
+  "id": "financial_tables/annual-report-2024-3-2026-08-21_page299",
+  "what": "Other Respiratory row, third value: the page prints (1); the key has (7)",
+  "find": "<td><i>Other Respiratory</i></td>\n\t\t\t<td>586</td>\n\t\t\t<td>(6)</td>\n\t\t\t<td>(7)</td>",
+  "replace": "<td><i>Other Respiratory</i></td>\n\t\t\t<td>586</td>\n\t\t\t<td>(6)</td>\n\t\t\t<td>(1)</td>"
+ },
+ {
+  "id": "financial_tables/ppt3-2026-08-14_page1",
+  "what": "Responsible AI policy row: the page prints \"Pages 12 and 124\"; the key has \"Pages 123 and 124\" (corrects the printed typo)",
+  "find": "<td>Pages 123 and 124</td>",
+  "replace": "<td>Pages 12 and 124</td>"
+ },
+ {
+  "id": "financial_tables/marsh-2026-08-14_page2",
+  "what": "row label: the page prints \"Total\"; the key has \"Tota\"",
+  "find": "<tr>\n<td>Tota</td>",
+  "replace": "<tr>\n<td>Total</td>"
+ }
+]
