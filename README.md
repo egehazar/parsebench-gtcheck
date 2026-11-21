@@ -48,6 +48,12 @@ Checks in `gtcheck.py`:
   reported, and caught three that were wrong as scored errors (see REPORT.md).
 
 ## Running it
+One command runs every check on the newest dataset revision and writes one review list (`work/REVIEW.md`): each
+flagged page, what the reference says, what the page and most outputs say, and a link to the PDF.
+```
+python audit.py                                   # all text and table subsets; --subsets text,tables for some
+```
+The individual steps:
 ```
 python fetch.py                                   # answer key (HF main) + published outputs, text and table subsets
 python gtcheck.py pdf SUBSET ...                  # reference vs text layer
