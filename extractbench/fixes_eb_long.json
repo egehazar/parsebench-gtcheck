@@ -1,0 +1,124 @@
+[
+ {
+  "id": "long/dd1155_schedule_continuation_0011",
+  "what": "quantity_ordered: CLINs 2100, 2200, 6000, 6100 print '21,640.00 Labor Hours'; the schema says return null only if no quantity is printed (its own example: '21,640.00 Labor Hours' -> 21640.0); key null",
+  "set": [
+   [
+    "line_items[4].quantity_ordered",
+    21640.0
+   ],
+   [
+    "line_items[5].quantity_ordered",
+    21640.0
+   ],
+   [
+    "line_items[14].quantity_ordered",
+    21640.0
+   ],
+   [
+    "line_items[15].quantity_ordered",
+    21640.0
+   ]
+  ]
+ },
+ {
+  "id": "long/sf1449_supplies_services_0059",
+  "what": "quantity: the Optional Task / Agile Delivery rows print 'XX EA'; the schema says return placeholders verbatim and the key has 'XX' on 14 such rows but null on these",
+  "set": [
+   [
+    "clin_items[47].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[48].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[49].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[50].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[51].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[52].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[53].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[54].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[55].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[56].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[59].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[60].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[61].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[62].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[63].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[64].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[65].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[66].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[67].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[68].quantity",
+    "XX"
+   ],
+   [
+    "clin_items[69].quantity",
+    "XX"
+   ]
+  ]
+ },
+ {
+  "id": "long/gov_clin_schedule_0005",
+  "what": "CLIN 0012 unit price prints '(b) (4)' on a black box; the schema's redaction policy says return the marker verbatim; the key accepts only null here, while CLINs 0001 and 0013 accept the marker beside null",
+  "add_alternate": [
+   [
+    "clin_line_items[11].unit_price",
+    "(b) (4)"
+   ]
+  ]
+ }
+]

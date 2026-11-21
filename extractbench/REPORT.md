@@ -2,7 +2,8 @@
 
 Dataset: `llamaindex/ExtractBench` at Hugging Face main, revision `f9b910906c` (2026-10-21). Outputs:
 `llamaindex/ExtractBench-results` main, `results/` tier (51 pipelines). Splits checked: short and medium (350 of the
-370 documents); long is in progress.
+370 documents) and long (the other 20; the Datalab Accurate pipeline was left out of the long check because its
+545 MB long output stalls the row matcher).
 
 ## How they were found and checked
 1. **Flagged by `valcheck.py`.** Every published output is scored through ExtractBench's own path
@@ -25,7 +26,7 @@ The same scoring path reproduces LlamaExtract Agentic Plus's leaderboard row: sh
 94.30 (94.30), long 93.95 (94.65), overall 96.14 (96.17). The long gap is likely the 30-minute cutoff, which this
 replay does not model.
 
-## Errors (18 documents)
+## Errors, short and medium splits (18 documents)
 
 | Document | What is wrong | Doc Value F1, mean over pipelines | Best pipeline |
 |---|---|---|---|
@@ -40,16 +41,28 @@ replay does not model.
 | `short/sec_13f_0009_coatue_management` | Three CHIME FINL INC rows: "CL A" is printed in the Title of Class column (wrapped under "COM SHS"); the key moves it into `name_of_issuer`. | +0.18; 42 up, 0 down | 0.9969 -> 0.9992 |
 | `medium/bar-lev-2022` | `form_1116.countries[0]`: `column_label` is "VARIOUS" and `country_name` null; the schema says column_label is the column letter, and the page prints "VARIOUS" on line i under column A. | +0.1; 24 up, 0 down | |
 
-Corrections: `fixes_eb_schema.json`, `fixes_13f.json`, `fixes_13f_coatue.json` (paths and new values). Crops:
+## Errors, long split (6 documents)
+
+| Document | What is wrong | Doc Value F1, mean over pipelines | Best pipeline |
+|---|---|---|---|
+| `long/real_sm0801_ae_full` | `relationship`, `action`, `outcome` are "decoded via the legend", with no enum in the schema (only `severity` has one). The legend prints "4=Probably Related", "2=Other Drug Therapy", "1=Recovered", ...; the key uses codes the document never prints (PROBABLY_RELATED, OTHER_DRUG_THERAPY, RECOVERED). Fix: accept the legend wording as well (1,814 cells; accepting the upper-case form "NOT RELATED" too gives +7.6). | +7.2; 35 up, 0 down | 0.939 -> 0.995 |
+| `long/dd1155_schedule_continuation_0011` | `quantity_ordered` null on CLINs 2100, 2200, 6000, 6100, which print "21,640.00 Labor Hours"; the schema returns null only when no quantity is printed, and its own example is '21,640.00 Labor Hours' -> 21640.0. Other option CLINs carry their quantity. | +2.9; 46 up, 0 down | 0.968 -> 1.00 |
+| `long/sec_13f_0010_renaissance_technologies` | The OTHER MANAGER column prints 0 on every one of the 3,213 printed rows, and the schema says "Renaissance Technologies prints '0' instead of leaving blank; preserve '0' as the string '0'". The key has null on 1,941 of its 3,063 rows ('0' on the rest). The key also lacks 150 printed rows (e.g. WALMART 931142103; not measured). | +2.2; 31 up | 0.919 -> 0.967 |
+| `long/sf1449_supplies_services_0059` | `quantity` null on 21 Optional Task / Agile Delivery rows that print "XX EA"; the schema says return placeholders verbatim, and the key has 'XX' on 14 such rows. | +2.2; 33 up, 3 down | 0.968 -> 0.991 |
+| `long/real_credit_strategies_full` | `par_currency` and `shares_or_par_thousands` null on rows that print them after the dot leaders (Fibercop SpA 4.75%, 06/30/30: ".... EUR 128 152,852"). 52 rows fixed here by matching the printed text; about a dozen more look the same. | +0.8; 32 up, 2 down | 0.974 -> 0.987 |
+| `long/gov_clin_schedule_0005` | CLIN 0012 unit price prints "(b) (4)" on a black box; the key accepts only null here, while CLINs 0001 and 0013 accept the marker beside null. Fix: accept the marker too. (Its quantity "1" is not printed either; the cell is a black box.) | +0.4; 34 up, 0 down | 0.987 -> 0.994 |
+
+Corrections: `fixes_eb_schema.json`, `fixes_13f.json`, `fixes_13f_coatue.json`, `fixes_eb_long.json`, `fixes_13f_rentec.json`, `fixes_ae_legend.json`, `fixes_credit_strategies.json` (paths and new values, or values to accept as well). Crops:
 `evidence/`. Following ExtractBench's practice in issue #123, a key that contradicts its schema can be fixed by
 accepting the schema-conforming value as an additional evidence value rather than by changing the schema.
 
-**Scale.** About +0.08 points on a pipeline's overall Value F1 on average; no ranking changes.
+**Scale.** About +0.12 points on a pipeline's overall Value F1 on average (24 documents of 370); no ranking changes.
 
 ## Not counted
 - `medium/real_blackrock_muni_bmn` state subtotals: the key's per-state values sum the two printed section subtotals
   (Alabama 9,059,447 = 3,849,820 + 5,209,627), a sum printed nowhere. But the field is described as "Summed value for
   the state" with `source_policy: inferred`, so it is defensible. Underspecified rather than wrong.
+- `long/gov_clin_schedule_0031` NET AMT: the line prints "(b) (4)", but that field has no redaction policy, so null is defensible (accepting the marker would add +1.4).
 - `medium/nport__dunham_funds`: two balances carry four decimals where the page prints two; no score effect.
 - Closing disclosures (cfpb, 3 documents): the key prints en dashes and curly apostrophes as the page does, while the
   schema's examples use ASCII ('- $0.01'). A schema/key mismatch worth accepting both forms for, not a wrong value.

@@ -41,6 +41,34 @@ def apply_set(d, path, new):
     return {'old': old, 'cell_rule_entries': n_rule, 'row_evidence_entries': n_rows}
 
 
+def apply_sets(d, sets):
+    """Many apply_set calls in one pass over the rules (for corrections touching thousands of cells)."""
+    import copy
+    changes = {}                                     # path -> (old, new, old_row, leaf)
+    for path, new in sets:
+        segs = _segs(path); obj = d['expected_output']
+        for s in segs[:-1]: obj = obj[s]
+        old_row = copy.deepcopy(obj); old = obj.get(segs[-1]) if isinstance(obj, dict) else obj[segs[-1]]
+        obj[segs[-1]] = new; changes[path] = (old, new, old_row, segs[-1])
+    rows = {}
+    for path, (old, new, old_row, leaf) in changes.items():
+        rows.setdefault(json.dumps(old_row, sort_keys=True, ensure_ascii=False), []).append((leaf, new))
+    n_rule = n_rows = 0
+    for k, r in (d.get('_field_rules') or {}).items():
+        if not isinstance(r, dict): continue
+        ch = changes.get(k)
+        for e in r.get('evidence') or []:
+            if ch is not None:
+                if e.get('value') == ch[0]: e['value'] = ch[1]; n_rule += 1
+                if e.get('quote') == ch[0] and isinstance(ch[1], str): e['quote'] = ch[1]
+            elif isinstance(e.get('value'), dict):
+                hit = rows.get(json.dumps(e['value'], sort_keys=True, ensure_ascii=False))
+                if hit:
+                    for leaf, new in hit: e['value'][leaf] = new
+                    n_rows += 1
+    return {'cells': len(changes), 'cell_rule_entries': n_rule, 'row_evidence_entries': n_rows}
+
+
 def value_f1(tc, data):
     from extract_bench.evaluation.evaluators.extract import prepare_extract_scoring_inputs
     inp = prepare_extract_scoring_inputs(tc, data, [])
@@ -63,8 +91,27 @@ def main(path):
             applied['raw:' + old[:40]] = new.count(old); new = new.replace(old, rep)
         if fx.get('set'):
             dd = json.loads(new)
-            for pth, val in fx['set']: applied['set:' + pth] = apply_set(dd, pth, val)
+            if len(fx['set']) > 50: applied['set_many'] = apply_sets(dd, fx['set'])
+            else:
+                for pth, val in fx['set']: applied['set:' + pth] = apply_set(dd, pth, val)
             new = json.dumps(dd, ensure_ascii=False)
+        if fx.get('accept'):                                     # also accept another reading: extra evidence value
+            dd = json.loads(new); n = 0; rx = re.compile(fx['accept']['path_regex']); mp = fx['accept']['map']
+            for k, r in (dd.get('_field_rules') or {}).items():
+                if not rx.fullmatch(k) or not isinstance(r, dict): continue
+                ev = r.get('evidence') or []
+                for e in list(ev):
+                    v = e.get('value')
+                    if isinstance(v, str) and v in mp and not any(x.get('value') == mp[v] for x in ev):
+                        alt = dict(e); alt['value'] = mp[v]; ev.append(alt); n += 1
+            applied['accepted_alternates'] = n; new = json.dumps(dd, ensure_ascii=False)
+        if fx.get('add_alternate'):                              # also accept a value beside the key's (e.g. a marker beside null)
+            dd = json.loads(new); fr = dd.setdefault('_field_rules', {}); n = 0
+            for pth, val in fx['add_alternate']:
+                r = fr.setdefault(pth, {'evidence': []}); ev = r.setdefault('evidence', [])
+                base = dict(ev[0]) if ev else {}
+                base.update({'value': val, 'quote': val}); ev.append(base); n += 1
+            applied['added_alternates'] = n; new = json.dumps(dd, ensure_ascii=False)
         tmp = Path(tempfile.mkdtemp()); shutil.copyfile(pdf, tmp / pdf.name); (tmp / tj.name).write_text(new, encoding='utf-8')
         tc0, tc1 = load_test_case(pdf, tj), load_test_case(tmp / pdf.name, tmp / tj.name)
         rows = []

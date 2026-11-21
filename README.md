@@ -69,7 +69,8 @@ environment (`uv sync`), plus `pillow`.
 ## ExtractBench
 `extractbench/`: the same approach for LlamaIndex's extraction benchmark ([REPORT](extractbench/REPORT.md)). Every
 published pipeline is scored through ExtractBench's own path, and answer-key cells that 90% of pipelines miss are
-read against the PDF and the field's schema description. 18 documents have key cells that contradict the document
-or the schema (masked SSNs on nine W-2s, lowercase table kinds the schema requires in Title Case, a missing digit in
-a 13F CUSIP, an excluded annotation row kept, ...), each measured on Value F1 with the official scorer. The same
+read against the PDF and the field's schema description. 24 documents have key cells that contradict the document
+or the schema (1,941 printed '0's stored as null in a 13F the schema names, legend codes the document never prints on
+1,814 adverse-event cells, masked SSNs on nine W-2s, lowercase table kinds the schema requires in Title Case, ...), each
+measured on Value F1 with the official scorer. The same
 path reproduces LlamaExtract Agentic Plus's row (overall 96.14 vs 96.17 published).

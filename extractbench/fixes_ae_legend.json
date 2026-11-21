@@ -1,0 +1,24 @@
+[
+ {
+  "id": "long/real_sm0801_ae_full",
+  "what": "relationship/action/outcome are 'decoded via the legend' with no enum in the schema (severity has one); the legend prints 'Probably Related', 'Other Drug Therapy', 'Recovered', ...; the key uses unprinted codes PROBABLY_RELATED, OTHER_DRUG_THERAPY, RECOVERED. Fix: also accept the legend wording",
+  "accept": {
+   "path_regex": "adverse_events\\[\\d+\\]\\.(relationship|action|outcome)",
+   "map": {
+    "NOT_RELATED": "Not Related",
+    "UNLIKELY": "Unlikely",
+    "POSSIBLY_RELATED": "Possibly Related",
+    "PROBABLY_RELATED": "Probably Related",
+    "DEFINITELY_RELATED": "Definitely Related",
+    "NONE": "None",
+    "OTHER_DRUG_THERAPY": "Other Drug Therapy",
+    "OTHER_TREATMENT_OR_PROCEDURE": "Other Treatment or Procedure",
+    "DISCONTINUATION_OF_DRUG_THERAPY": "Discontinuation of Drug Therapy",
+    "DISCONTINUATION_FROM_STUDY": "Discontinuation from Study",
+    "RECOVERED": "Recovered",
+    "CONTINUING_WITHOUT_TREATMENT": "Continuing without Treatment",
+    "CONTINUING_WITH_TREATMENT": "Continuing with Treatment"
+   }
+  }
+ }
+]
