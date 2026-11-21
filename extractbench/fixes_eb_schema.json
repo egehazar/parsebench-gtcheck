@@ -1,0 +1,316 @@
+[
+ {
+  "id": "short/passcoag-2020-w2-p0002-r2",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0003-r1",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0003-r2",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0003-r4",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0004-r2",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0004-r4",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0005-r1",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0005-r3",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/passcoag-2020-w2-p0006-r3",
+  "what": "employee_ssn: schema says return exactly 'XXX-XX-XXXX' for a fully masked tail and not to count struck-out X's; key has 'XXX-XX-XXXXX'",
+  "set": [
+   [
+    "employee_ssn",
+    "XXX-XX-XXXX"
+   ]
+  ]
+ },
+ {
+  "id": "short/budget_appendix_legis",
+  "what": "table_number: schema says the kind is exactly one of 'Program and Financing', 'Object Classification', 'Employment Summary' (Title Case); key is lowercase",
+  "set": [
+   [
+    "tables[0].table_number",
+    "002-0477-0-1-801 | Employment Summary"
+   ],
+   [
+    "tables[1].table_number",
+    "002-0461-0-1-801 | Program and Financing"
+   ],
+   [
+    "tables[2].table_number",
+    "002-0476-0-1-801 | Object Classification"
+   ],
+   [
+    "tables[3].table_number",
+    "002-0476-0-1-801 | Program and Financing"
+   ],
+   [
+    "tables[4].table_number",
+    "002-0477-0-1-801 | Object Classification"
+   ],
+   [
+    "tables[5].table_number",
+    "002-0477-0-1-801 | Program and Financing"
+   ],
+   [
+    "tables[6].table_number",
+    "002-0478-0-1-801 | Object Classification"
+   ],
+   [
+    "tables[7].table_number",
+    "002-0478-0-1-801 | Program and Financing"
+   ],
+   [
+    "tables[8].table_number",
+    "009-1600-0-1-801 | Program and Financing"
+   ]
+  ]
+ },
+ {
+  "id": "medium/gsa_mas_it_labor_0011",
+  "what": "sin: page 37 heading prints 'SIN ANCILLARY' and the schema says capture 'ANCILLARY' as printed (key 'Ancillary', 13 cells); labor_category_title[57]: the rate table (p35) prints '58 Programmer Analyst / Asc', the schema says use the rate table and keep abbreviations; key 'Programmer Analyst Associate' is from the descriptions section",
+  "set": [
+   [
+    "labor_categories[93].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[94].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[95].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[96].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[97].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[98].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[99].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[100].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[101].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[102].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[103].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[104].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[105].sin",
+    "ANCILLARY"
+   ],
+   [
+    "labor_categories[57].labor_category_title",
+    "Programmer Analyst Asc"
+   ]
+  ]
+ },
+ {
+  "id": "medium/erie_county_2017_single_audit",
+  "what": "awards[10..21].program_title: schema says use the row label when it is a sub-grantee/project name (its example: 'Millcreek CDBG'); the key does that for the 14.218 block but uses the header title for the 14.228 rows labelled 'Northeast CDBG', 'County CDBG', ...",
+  "set": [
+   [
+    "awards[10].program_title",
+    "Northeast CDBG"
+   ],
+   [
+    "awards[11].program_title",
+    "County CDBG"
+   ],
+   [
+    "awards[12].program_title",
+    "County CDBG"
+   ],
+   [
+    "awards[13].program_title",
+    "Edinboro CDBG"
+   ],
+   [
+    "awards[14].program_title",
+    "Girard CDBG"
+   ],
+   [
+    "awards[15].program_title",
+    "McKean CDBG"
+   ],
+   [
+    "awards[16].program_title",
+    "Northeast CDBG"
+   ],
+   [
+    "awards[17].program_title",
+    "County CDBG"
+   ],
+   [
+    "awards[18].program_title",
+    "Girard CDBG"
+   ],
+   [
+    "awards[19].program_title",
+    "McKean CDBG"
+   ],
+   [
+    "awards[20].program_title",
+    "Northeast CDBG"
+   ],
+   [
+    "awards[21].program_title",
+    "Edinboro CDBG"
+   ]
+  ]
+ },
+ {
+  "id": "short/cbp_7501_continuation_0002",
+  "what": "description_of_merchandise: the schema lists 'CAFTA,(P+)17011150-2106909' as an annotation row to exclude; the key includes it",
+  "set": [
+   [
+    "line_items[0].description_of_merchandise",
+    "OTH SGR,CN/BT,N/FV,NCLR,OT"
+   ],
+   [
+    "line_items[1].description_of_merchandise",
+    "OTH SGR,CN/BT,N/FV,NCLR,OT"
+   ]
+  ]
+ },
+ {
+  "id": "medium/bar-lev-2022",
+  "what": "form_1116.countries[0]: column_label must be the column letter; the page prints 'VARIOUS' on line i under column A; key has column_label 'VARIOUS', country_name null",
+  "set": [
+   [
+    "form_1116.countries[0].column_label",
+    "A"
+   ],
+   [
+    "form_1116.countries[0].country_name",
+    "VARIOUS"
+   ]
+  ]
+ },
+ {
+  "id": "medium/nport__dunham_funds",
+  "what": "two balances carry 4 decimals where the page prints 2 (857,272.73; 289,690.50)",
+  "set": [
+   [
+    "holdings[28].balance",
+    857272.73
+   ],
+   [
+    "holdings[163].balance",
+    289690.5
+   ]
+  ]
+ },
+ {
+  "id": "medium/gov_clin_schedule_0033",
+  "what": "CLIN 0004 quantity and unit price: the page prints the FOIA marker '(b) (4)' and the schema says return it verbatim; key null",
+  "set": [
+   [
+    "clin_line_items[5].quantity",
+    "(b) (4)"
+   ],
+   [
+    "clin_line_items[5].unit_price",
+    "(b) (4)"
+   ]
+  ]
+ },
+ {
+  "id": "medium/gov_clin_schedule_0035",
+  "what": "CLIN 0001 unit price: the page prints '(b) (5), (b) (4)'; key '(b) (4)'",
+  "set": [
+   [
+    "clin_line_items[0].unit_price",
+    "(b) (5), (b) (4)"
+   ]
+  ]
+ }
+]

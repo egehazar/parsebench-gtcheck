@@ -1,0 +1,66 @@
+{
+ "pipeline": "llamaextract_agentic_plus",
+ "splits": {
+  "short": {
+   "docs": 252,
+   "mean_doc_f1": 97.03,
+   "metadata_keys": [
+    "bbox_iou_threshold",
+    "expected_cells",
+    "expected_rows",
+    "g_correct",
+    "grounded_expected_cells",
+    "grounded_incomplete",
+    "grounded_pred_claims",
+    "p_correct",
+    "page_expected_cells",
+    "page_pred_claims",
+    "predicted_cells",
+    "predicted_rows",
+    "v_correct",
+    "value_incomplete"
+   ]
+  },
+  "medium": {
+   "docs": 98,
+   "mean_doc_f1": 94.3,
+   "metadata_keys": [
+    "bbox_iou_threshold",
+    "expected_cells",
+    "expected_rows",
+    "g_correct",
+    "grounded_expected_cells",
+    "grounded_incomplete",
+    "grounded_pred_claims",
+    "p_correct",
+    "page_expected_cells",
+    "page_pred_claims",
+    "predicted_cells",
+    "predicted_rows",
+    "v_correct",
+    "value_incomplete"
+   ]
+  },
+  "long": {
+   "docs": 20,
+   "mean_doc_f1": 93.95,
+   "metadata_keys": [
+    "bbox_iou_threshold",
+    "expected_cells",
+    "expected_rows",
+    "g_correct",
+    "grounded_expected_cells",
+    "grounded_incomplete",
+    "grounded_pred_claims",
+    "p_correct",
+    "page_expected_cells",
+    "page_pred_claims",
+    "predicted_cells",
+    "predicted_rows",
+    "v_correct",
+    "value_incomplete"
+   ]
+  }
+ },
+ "overall_mean_doc_f1": 96.14
+}

@@ -1,0 +1,36 @@
+[
+ {
+  "id": "short/sec_13f_0019_soros_fund_management",
+  "what": "title_of_class written without the space the filing prints (\"COM CLA\" vs \"COM CL A\", 36 cells), and one CUSIP missing a digit (31491108 vs 314911108)",
+  "replace": [
+   [
+    "CLA",
+    "CL A"
+   ],
+   [
+    "COM CLA",
+    "COM CL A"
+   ],
+   [
+    "CLA COM",
+    "CL A COM"
+   ],
+   [
+    "COM SHS CLA",
+    "COM SHS CL A"
+   ],
+   [
+    "CAP STK CLA",
+    "CAP STK CL A"
+   ],
+   [
+    "SHS CLA",
+    "SHS CL A"
+   ],
+   [
+    "31491108",
+    "314911108"
+   ]
+  ]
+ }
+]

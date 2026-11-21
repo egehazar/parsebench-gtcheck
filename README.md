@@ -1,5 +1,10 @@
 # parsebench-gtcheck
 
+Answer-key checks for two LlamaIndex benchmarks: [ParseBench 2](#parsebench-2) (document parsing) and
+[ExtractBench](extractbench/REPORT.md) (schema-guided extraction).
+
+## ParseBench 2
+
 Finds likely mistakes in the answer key of [ParseBench 2](https://github.com/run-llama/ParseBench), LlamaIndex's
 benchmark for document parsers, and measures what each mistake costs the parsers, with ParseBench's own scorer.
 
@@ -60,3 +65,11 @@ environment (`uv sync`), plus `pillow`.
   (github.com/run-llama/ParseBench, huggingface.co/datasets/llamaindex/ParseBench-2). The crops in `evidence/` are
   renders of pages from that dataset. This project imports ParseBench's code from a checkout and does not copy it.
 - Built with AI assistants (Claude, with Fable as an independent reviewer).
+
+## ExtractBench
+`extractbench/`: the same approach for LlamaIndex's extraction benchmark ([REPORT](extractbench/REPORT.md)). Every
+published pipeline is scored through ExtractBench's own path, and answer-key cells that 90% of pipelines miss are
+read against the PDF and the field's schema description. 18 documents have key cells that contradict the document
+or the schema (masked SSNs on nine W-2s, lowercase table kinds the schema requires in Title Case, a missing digit in
+a 13F CUSIP, an excluded annotation row kept, ...), each measured on Value F1 with the official scorer. The same
+path reproduces LlamaExtract Agentic Plus's row (overall 96.14 vs 96.17 published).

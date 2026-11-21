@@ -1,0 +1,32 @@
+[
+ {
+  "id": "short/sec_13f_0009_coatue_management",
+  "what": "three Chime rows: the filing prints issuer \"CHIME FINL INC\" and title of class \"COM SHS / CL A\" (wrapped, same column); the key moves \"CL A\" into the issuer name",
+  "set": [
+   [
+    "holdings[61].name_of_issuer",
+    "CHIME FINL INC"
+   ],
+   [
+    "holdings[61].title_of_class",
+    "COM SHS CL A"
+   ],
+   [
+    "holdings[62].name_of_issuer",
+    "CHIME FINL INC"
+   ],
+   [
+    "holdings[62].title_of_class",
+    "COM SHS CL A"
+   ],
+   [
+    "holdings[63].name_of_issuer",
+    "CHIME FINL INC"
+   ],
+   [
+    "holdings[63].title_of_class",
+    "COM SHS CL A"
+   ]
+  ]
+ }
+]
