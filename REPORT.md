@@ -4,6 +4,14 @@ Dataset: `llamaindex/ParseBench-2` at Hugging Face main, revision `51c6bc2abf2e6
 (newest changelog entry v2.07). Parser outputs: `llamaindex/ParseBench-2-results` main (59 published rows).
 Subsets checked: text, tables, complex_table_headers, financial_tables, insurance_filing_tables, dense_tables.
 
+## Outcome (2026-11-24)
+
+All 23 corrections in batches 1 to 3 were accepted and released in ParseBench 2 v2.09, changelog entries GT316-001
+to GT316-023 (issue #316 closed as completed). From the other notes: three stale Markdown exports were synchronized
+(GT316-024 to 026), and the livingWord note on image alt text led to a scorer fix, run-llama/ParseBench#324 in CLI
+2.2.2 (GT316-027: the Agentic Plus page goes from 83.42 to 95.00 on the corrected reference). Spot-checked in the
+released files: p21 ends at Water Districts, EMEAA Removals is (3,302), the checkbox bullet reads "aimed and".
+
 ## Batch 1 (posted as run-llama/ParseBench#316): four errors
 
 | Page | What is wrong | Best score on the page today -> after the fix | Page mean over 59 parsers |

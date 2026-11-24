@@ -8,7 +8,12 @@ Answer-key checks for two LlamaIndex benchmarks: [ParseBench 2](#parsebench-2) (
 Finds likely mistakes in the answer key of [ParseBench 2](https://github.com/run-llama/ParseBench), LlamaIndex's
 benchmark for document parsers, and measures what each mistake costs the parsers, with ParseBench's own scorer.
 
-**Findings: [REPORT.md](REPORT.md)**, on the newest revision (v2.07):
+**Outcome:** every correction below was accepted and released in ParseBench 2 **v2.09** (2026-11-24): 23 pages,
+changelog entries GT316-001 to GT316-023. The Markdown question led to three synchronized exports (GT316-024 to 026),
+and the livingWord scorer note to a scorer fix ([run-llama/ParseBench#324](https://github.com/run-llama/ParseBench/pull/324),
+CLI 2.2.2, GT316-027).
+
+**Findings: [REPORT.md](REPORT.md)**, found on revision v2.07:
 - Batch 1 ([run-llama/ParseBench#316](https://github.com/run-llama/ParseBench/issues/316)): four errors, each of
   which caps the best possible score on its page (a perfect parse of one insurance page scores 0.75 today).
 - Batch 2: 15 text pages where the reference differs from what the page prints: one page completes its last
